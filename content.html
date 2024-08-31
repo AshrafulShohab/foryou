@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protected Content</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="status-message"></h1>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        // Function to check if the user has entered the correct password
+        function displayContentBasedOnPassword() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const passwordStatus = urlParams.get('status');
+
+            const statusMessage = document.getElementById('status-message');
+            const message = document.getElementById('message');
+
+            if (passwordStatus === 'success') {
+                statusMessage.textContent = "Access Granted!";
+                message.textContent = "You have entered the correct password.";
+            } else {
+                statusMessage.textContent = "Access Denied!";
+                message.textContent = "Incorrect password. You do not have access to this content.";
+            }
+        }
+
+        // Call the function when the page loads
+        displayContentBasedOnPassword();
+    </script>
+</body>
+</html>
